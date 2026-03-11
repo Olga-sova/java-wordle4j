@@ -1,5 +1,6 @@
 package ru.yandex.practicum;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -9,6 +10,9 @@ import java.util.List;
  */
 public class WordleDictionary {
 
-    private List<String> words;
+    private final List<String> words = new ArrayList<>();
 
+    public void addWord(String word) {
+        words.add(word);
+    }
 }
