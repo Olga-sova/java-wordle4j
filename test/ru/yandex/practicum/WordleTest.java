@@ -10,9 +10,9 @@ class WordleTest {
         dictionary.addWord("apple");
         dictionary.addWord("banana");
 
-
         WordleGame game = new WordleGame(dictionary);
-
+        assertTrue(dictionary.containsWord("apple"));
+        assertEquals(6, game.getSteps());
 
         game.startGame();
     }

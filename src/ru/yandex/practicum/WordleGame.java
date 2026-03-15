@@ -20,7 +20,7 @@ public class WordleGame {
 
     private int steps;
 
-    private WordleDictionary dictionary;
+    private final WordleDictionary dictionary;
 
     public WordleGame(WordleDictionary dictionary) {
         this.dictionary = dictionary;
@@ -78,6 +78,9 @@ public class WordleGame {
         if (steps == 0) {
             System.out.println("Вы проиграли. Правильное слово было: " + answer);
         }
+    }
+    public int getSteps() {
+        return steps;
     }
 }
 

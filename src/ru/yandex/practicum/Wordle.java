@@ -17,10 +17,10 @@ import java.io.IOException;
 public class Wordle {
     private static final Logger logger = LoggerFactory.getLogger(Wordle.class);
 
-    public static void main(String[] args) {
+    public static void main() {
         logger.info("Начата загрузка словаря");
         WordleDictionaryLoader loader = new WordleDictionaryLoader();
-        WordleDictionary dictionary = null;
+        WordleDictionary dictionary;
         try {
             dictionary = loader.loadDictionary("words_ru.txt");
         } catch (IOException e) {

@@ -3,6 +3,9 @@ package ru.yandex.practicum;
 import java.io.File;
 import java.util.Scanner;
 import java.io.IOException;
+
+import static java.lang.System.err;
+
 /*
 этот класс содержит в себе всю рутину по работе с файлами словарей и с кодировками
     ему нужны методы по загрузке списка слов из файла по имени файла
@@ -20,7 +23,7 @@ public class WordleDictionaryLoader {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Ошибка чтения файла: " + e.getMessage());
+            err.printf("Ошибка чтения файла: %s%n", e.getMessage());
         }
         return dictionary;
     }
