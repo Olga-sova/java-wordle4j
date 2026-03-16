@@ -1,7 +1,6 @@
 package ru.yandex.practicum;
 
 import java.util.Scanner;
-import java.util.List;
 /*
 в этом классе хранится словарь и состояние игры
     текущий шаг
@@ -15,8 +14,7 @@ import java.util.List;
 не забудьте про специальные типы исключений для игровых и неигровых ошибок
  */
 public class WordleGame {
-
-    private String answer;
+    public static final int MAX_ATTEMPTS = 6;
 
     private int steps;
 
@@ -30,8 +28,8 @@ public class WordleGame {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Игра началась!");
-        answer = dictionary.getRandomWord();
-        steps = 6;
+        String answer = dictionary.getRandomWord();
+        steps = MAX_ATTEMPTS;
         new StringBuilder("-".repeat(answer.length()));
         StringBuilder feedback = new StringBuilder();
         while (steps > 0) {
@@ -41,13 +39,15 @@ public class WordleGame {
 
             try {
                 if (playerWord.length() != answer.length()) {
-                    throw new IllegalArgumentException("Длина введённого слова не соответствует длине секретного слова.");
+                    throw new WordLengthMismatchException("Длина введённого слова не соответствует длине секретного слова.");
                 }
 
                 if (!dictionary.containsWord(playerWord)) {
-                    throw new IllegalArgumentException("Введённое слово не найдено в словаре.");
+                    throw new WordNotFoundException("Введённое слово не найдено в словаре.");
                 }
-            } catch (IllegalArgumentException e) {
+            } catch (WordLengthMismatchException e) {
+                throw new RuntimeException(e);
+            } catch (WordNotFoundException e) {
                 System.out.println(e.getMessage());
                 continue;
             }
@@ -70,14 +70,15 @@ public class WordleGame {
                         feedback.append("-");
                     }
                 }
-                System.out.println("Ваш ответ: "+ feedback);
+                System.out.println("Ваш ответ: " + feedback);
             }
         }
 
         if (steps == 0) {
-            System.out.println("Вы проиграли. Правильное слово было: "+ answer);
+            System.out.println("Вы проиграли. Правильное слово было: " + answer);
         }
     }
+
     public int getSteps() {
         return steps;
     }

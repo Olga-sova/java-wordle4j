@@ -10,7 +10,7 @@ import java.util.Random;
     также этот класс может содержать рутинные функции по сравнению слов, букв и т.д.
  */
 public class WordleDictionary {
-
+    private static final int WORD_LENGTH = 5;
     private final List<String> words = new ArrayList<>();
 
     public void addWord(String word) {
@@ -21,7 +21,7 @@ public class WordleDictionary {
         Random random = new Random();
         int index = random.nextInt(words.size());
         String word = words.get(index);
-        while (word.length() != 5) {
+        while (word.length() != WORD_LENGTH ) {
             index = random.nextInt(words.size());
             word = words.get(index);
         }
@@ -32,3 +32,4 @@ public class WordleDictionary {
         return words.contains(word);
     }
 }
+
