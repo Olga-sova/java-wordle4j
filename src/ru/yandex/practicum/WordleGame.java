@@ -1,7 +1,7 @@
 package ru.yandex.practicum;
 
 import java.util.Scanner;
-
+import java.util.List;
 /*
 в этом классе хранится словарь и состояние игры
     текущий шаг
@@ -27,16 +27,15 @@ public class WordleGame {
     }
 
     public void startGame() {
-
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Игра началась!");
         answer = dictionary.getRandomWord();
         steps = 6;
-        new StringBuilder("-".repeat(answer.length()))
+        new StringBuilder("-".repeat(answer.length()));
         StringBuilder feedback = new StringBuilder();
         while (steps > 0) {
-
+            feedback.setLength(0);
             System.out.println("Введите слово:");
             String playerWord = scanner.nextLine();
 
@@ -58,7 +57,7 @@ public class WordleGame {
                 break;
             } else {
                 steps--;
-                System.out.println("Неправильно. Осталось попыток: " + steps);
+                System.out.printf("Неправильно. Осталось попыток: %d%n", steps);
                 for (int i = 0; i < answer.length(); i++) {
                     char playerChar = playerWord.charAt(i);
                     char secretChar = answer.charAt(i);
@@ -71,12 +70,12 @@ public class WordleGame {
                         feedback.append("-");
                     }
                 }
-                System.out.println("Ваш ответ: " + feedback);
+                System.out.println("Ваш ответ: "+ feedback);
             }
         }
 
         if (steps == 0) {
-            System.out.println("Вы проиграли. Правильное слово было: " + answer);
+            System.out.println("Вы проиграли. Правильное слово было: "+ answer);
         }
     }
     public int getSteps() {

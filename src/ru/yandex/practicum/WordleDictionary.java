@@ -20,8 +20,14 @@ public class WordleDictionary {
     public String getRandomWord() {
         Random random = new Random();
         int index = random.nextInt(words.size());
-        return words.get(index);
+        String word = words.get(index);
+        while (word.length() != 5) {
+            index = random.nextInt(words.size());
+            word = words.get(index);
+        }
+        return word;
     }
+
     public boolean containsWord(String word) {
         return words.contains(word);
     }
