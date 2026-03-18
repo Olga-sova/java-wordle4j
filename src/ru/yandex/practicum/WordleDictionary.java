@@ -21,7 +21,7 @@ public class WordleDictionary {
         Random random = new Random();
         int index = random.nextInt(words.size());
         String word = words.get(index);
-        while (word.length() != WORD_LENGTH ) {
+        while (word.length() != WORD_LENGTH) {
             index = random.nextInt(words.size());
             word = words.get(index);
         }
