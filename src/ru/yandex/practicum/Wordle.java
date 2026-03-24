@@ -1,6 +1,7 @@
 package ru.yandex.practicum;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Wordle {
     public static void main() {
@@ -17,5 +18,8 @@ public class Wordle {
         WordleGame game = new WordleGame(dictionary);
         game.startGame();
     }
+    Scanner scanner = new Scanner(System.in);
+    String input = scanner.nextLine();
+
 }
 
