@@ -46,7 +46,8 @@ public class WordleGame {
                     throw new WordNotFoundException("Введённое слово не найдено в словаре.");
                 }
             } catch (WordLengthMismatchException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
+                continue; // Попросить пользователя ввести слово снова
             } catch (WordNotFoundException e) {
                 System.out.println(e.getMessage());
                 continue;

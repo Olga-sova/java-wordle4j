@@ -14,6 +14,5 @@ class WordleTest {
         assertTrue(dictionary.containsWord("apple"));
         game.startGame();
         assertEquals(WordleGame.MAX_ATTEMPTS, game.getSteps());
-
     }
 }
