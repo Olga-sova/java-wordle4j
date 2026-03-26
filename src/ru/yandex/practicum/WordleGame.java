@@ -1,6 +1,5 @@
 package ru.yandex.practicum;
 
-import java.util.Scanner;
 /*
 в этом классе хранится словарь и состояние игры
     текущий шаг
@@ -24,8 +23,7 @@ public class WordleGame {
         this.dictionary = dictionary;
     }
 
-    public void startGame() {
-        Scanner scanner = new Scanner(System.in);
+    public void startGame(String input) {
 
         System.out.println("Игра началась!");
         String answer = dictionary.getRandomWord();
@@ -35,14 +33,13 @@ public class WordleGame {
         while (steps > 0) {
             feedback.setLength(0);
             System.out.println("Введите слово:");
-            String playerWord = scanner.nextLine();
 
             try {
-                if (playerWord.length() != answer.length()) {
+                if (input.length() != answer.length()) {
                     throw new WordLengthMismatchException("Длина введённого слова не соответствует длине секретного слова.");
                 }
 
-                if (!dictionary.containsWord(playerWord)) {
+                if (!dictionary.containsWord(input)) {
                     throw new WordNotFoundException("Введённое слово не найдено в словаре.");
                 }
             } catch (WordLengthMismatchException e) {
@@ -53,14 +50,14 @@ public class WordleGame {
                 continue;
             }
 
-            if (playerWord.equals(answer)) {
+            if (input.equals(answer)) {
                 System.out.println("Вы угадали слово!");
                 break;
             } else {
                 steps--;
                 System.out.printf("Неправильно. Осталось попыток: %d%n", steps);
                 for (int i = 0; i < answer.length(); i++) {
-                    char playerChar = playerWord.charAt(i);
+                    char playerChar = input.charAt(i);
                     char secretChar = answer.charAt(i);
 
                     if (playerChar == secretChar) {
