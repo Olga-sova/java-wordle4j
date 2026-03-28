@@ -35,17 +35,13 @@ public class WordleGame {
             System.out.println("Введите слово:");
 
             try {
-                if (input.length() != answer.length()) {
-                    throw new WordLengthMismatchException("Длина введённого слова не соответствует длине секретного слова.");
-                }
+                if (input.length() != answer.length())
+                    throw new WordLengthMismatchException("Длина введённого слова " +
+                            "не соответствует длине секретного слова.");
 
-                if (!dictionary.containsWord(input)) {
+                if (!dictionary.containsWord(input))
                     throw new WordNotFoundException("Введённое слово не найдено в словаре.");
-                }
-            } catch (WordLengthMismatchException e) {
-                System.out.println(e.getMessage());
-                continue; // Попросить пользователя ввести слово снова
-            } catch (WordNotFoundException e) {
+            } catch (WordLengthMismatchException | WordNotFoundException e) {
                 System.out.println(e.getMessage());
                 continue;
             }

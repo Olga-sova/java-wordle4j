@@ -12,13 +12,13 @@ public class Wordle {
         try {
             dictionary = loader.loadDictionary("words_ru.txt");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new DictionaryLoadingException("Ошибка при загрузке словаря", e);
         }
         System.out.println("Словарь загружен успешно");
-
         WordleGame game = new WordleGame(dictionary);
         String input = scanner.nextLine();
         game.startGame(input);
     }
 }
+
 
