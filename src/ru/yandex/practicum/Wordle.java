@@ -1,11 +1,10 @@
 package ru.yandex.practicum;
 
-import java.util.Scanner;
 import java.io.IOException;
 
 public class Wordle {
     public static void main() {
-        Scanner scanner = new Scanner(System.in);
+
         System.out.println("Начата загрузка словаря");
         WordleDictionaryLoader loader = new WordleDictionaryLoader();
         WordleDictionary dictionary;
@@ -16,8 +15,7 @@ public class Wordle {
         }
         System.out.println("Словарь загружен успешно");
         WordleGame game = new WordleGame(dictionary);
-        String input = scanner.nextLine();
-        game.startGame(input);
+        game.startGame();
     }
 }
 

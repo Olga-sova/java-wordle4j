@@ -1,5 +1,7 @@
 package ru.yandex.practicum;
 
+import java.util.Scanner;
+
 /*
 в этом классе хранится словарь и состояние игры
     текущий шаг
@@ -23,7 +25,8 @@ public class WordleGame {
         this.dictionary = dictionary;
     }
 
-    public void startGame(String input) {
+    public void startGame() {
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Игра началась!");
         String answer = dictionary.getRandomWord();
@@ -33,6 +36,7 @@ public class WordleGame {
         while (steps > 0) {
             feedback.setLength(0);
             System.out.println("Введите слово:");
+            String input =  scanner.nextLine();
 
             try {
                 if (input.length() != answer.length())
