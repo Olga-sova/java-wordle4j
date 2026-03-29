@@ -1,7 +1,9 @@
 package ru.yandex.practicum;
 
-import java.io.File;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.nio.charset.StandardCharsets;
 import java.io.IOException;
 
 /*
@@ -12,12 +14,16 @@ import java.io.IOException;
 public class WordleDictionaryLoader {
     public WordleDictionary loadDictionary(String filePath) throws IOException {
         WordleDictionary dictionary = new WordleDictionary();
-        try (Scanner scanner = new Scanner(new File(filePath))) {
-            while (scanner.hasNextLine()) {
-                String word = scanner.nextLine();
+
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8)
+        )) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String word = line.trim();  // убираем лишние пробелы и переносы строк
                 dictionary.addWord(word);
             }
+            return dictionary;
         }
-        return dictionary;
     }
 }
