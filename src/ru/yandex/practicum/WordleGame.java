@@ -23,6 +23,7 @@ public class WordleGame {
 
     public WordleGame(WordleDictionary dictionary) {
         this.dictionary = dictionary;
+        this.steps = MAX_ATTEMPTS;
     }
 
     public void startGame() {
