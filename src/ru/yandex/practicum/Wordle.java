@@ -1,18 +1,22 @@
 package ru.yandex.practicum;
 
-/*
-в главном классе нам нужно:
-    создать лог-файл (он должен передаваться во все классы)
-    создать загрузчик словарей WordleDictionaryLoader
-    загрузить словарь WordleDictionary с помощью класса WordleDictionaryLoader
-    затем создать игру WordleGame и передать ей словарь
-    вызвать игровой метод в котором в цикле опрашивать пользователя и передавать информацию в игру
-    вывести состояние игры и конечный результат
- */
+import java.io.IOException;
+
 public class Wordle {
+    public static void main() {
 
-    public static void main(String[] args) {
-
+        System.out.println("Начата загрузка словаря");
+        WordleDictionaryLoader loader = new WordleDictionaryLoader();
+        WordleDictionary dictionary;
+        try {
+            dictionary = loader.loadDictionary("words_ru.txt");
+        } catch (IOException e) {
+            throw new DictionaryLoadingException("Ошибка при загрузке словаря", e);
+        }
+        System.out.println("Словарь загружен успешно");
+        WordleGame game = new WordleGame(dictionary);
+        game.startGame();
     }
-
 }
+
+
